@@ -1,0 +1,55 @@
+---
+title: NBN Year in Media 2014
+---
+
+<nav class="main-nav">
+	<h1 class="site-header">
+		<div class="site-logo"></div>
+	</h1>
+	<p href="#" id="logo">Year in <br/>Media 2014</p>
+	<ul class="social">
+		<a href="http://twitter.com/home?status=North by Northwestern&#8217;s Year in Media 2014 http://apps.northbynorthwestern.com/year-in-media/2014 via @nbn_tweets" target="_blank"><li class="twitter-share"><span class="icon-twitter"></span></li></a>
+		<a href="http://www.facebook.com/sharer.php?u=http://apps.northbynorthwestern.com/year-in-media/2014" target="_blank"><li class="facebook-share"><span class="icon-facebook"></span></li></a>
+	</ul>
+</nav>
+
+<div id="filters">
+  <div class="ui-group">
+    <h3>Filter by</h3>
+    <ul class="button-group js-radio-button-group" data-filter-group="category">
+      <li><button class="btn all-stories is-checked" data-filter="">All</button></li>
+      <li><button class="btn" value=".popculture" data-filter=".popculture">Pop Culture</button></li>
+      <li><button class="btn" value=".news" data-filter=".news">News</button></li>
+      <li><button class="btn" value=".entertainment" data-filter=".entertainment">Entertainment</button></li>
+      <li><button class="btn" value=".tech" data-filter=".tech">Tech</button></li>
+      <li><button class="btn" value=".genderandsexuality" data-filter=".genderandsexuality">Gender and Sexuality</button></li>
+      <li><button class="btn" value=".northwestern" data-filter=".northwestern">Northwestern</button></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="main">
+	<div class="back-to-top"><p><span class="back-to-top-hide">Back to top</span> <span class="icon-point-up"></span></p></div>
+	<% data.nbn2014['Sheet1'].each do |row| %>
+		<div class="story element-item 
+		<% if row.tags.index(/\s/) %>
+			<% row.tags.split(',').each do |tag| %>
+				<%= tag.downcase.gsub(/\s+/, "") %>
+			<% end %>
+		<% else %>
+			<% row.tags.split(',').each do |tag| %>
+				<%= tag.downcase %>
+			<% end %>
+		<% end %>
+		">
+			<p class="by"><%= row.author %></p>
+	    	<h2><%= row.topic %></h2>
+	    	<div class="blurb"><%= row.blurb %></div>
+	    	<p class="story-tags tag-group"><span class="filed-under">Filed under:</span> <% row.tags.split(',').each_with_index do |tag, index| %><% if (index == (row.tags.split(',')).size - 1) %><span value="<%= tag.downcase.gsub(/\s+/, "") %>"><%= tag %></span><% else %><span value="<%= tag.downcase.gsub(/\s+/, "") %>"><%= tag %></span>,<% end %><% end %></p>
+	    </div>
+	<% end %>
+</div>
+
+<footer>Production by Nicole Zhu / <a href="http://northbynorthwestern.com" target="_blank">North by Northwestern</a></footer>
